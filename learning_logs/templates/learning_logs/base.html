@@ -1,0 +1,8 @@
+{#在这里创建页面基础模板，为后续继承提供基础模板#}
+<p> 
+    <a href="{% url 'learning_logs:index' %}">Learning Log</a>
+    <a href="{% url 'learning_logs:topics' %}">Topics</a>
+</p>
+
+
+{% block content %}{% endblock content %}{#这行代码只是占位，用于继承模板时填充内容，到时里面的block content可以替换成自己的页面内容#}

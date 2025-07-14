@@ -19,6 +19,7 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),  # 可以理解成访问accounts下的urls.py，但是那边暂时没有这个文件，所以要前往创建
     path('',include('learning_logs.urls')),#可以理解成访问learning_logs下的urls.py，但是那边暂时没有这个文件，所以要前往创建
 
 

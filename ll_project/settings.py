@@ -33,6 +33,10 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #我的自定义应用
     'learning_logs',#从文件夹learning_logs中导入，django会自动将learning_logs添加到INSTALLED_APPS中 
+    'accounts',#从文件夹accounts中导入，django会自动将accounts添加到INSTALLED_APPS中
+    
+    #第三方应用
+    'django_bootstrap5',
 
     #django默认应用
     'django.contrib.admin',
@@ -124,3 +128,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#My settings
+LOGIN_REDIRECT_URL = 'learning_logs:index'
+LOGOUT_REDIRECT_URL = 'learning_logs:index'
+LOGIN_URL = 'accounts:login'#如果未登录，则跳转到登录页面

@@ -2,9 +2,9 @@
 
 {% block content %}
 <p>Add a new topic:</p>
-<form action="{% url 'learning_logs:new_topic' %}" method='post'>
+<form action="{% url 'learning_logs:new_topic' %}" method='post' class="text-white text-decoration-none"></form>>
     {% csrf_token %}
     {{ form.as_p }}
-    <button name="submit">Add topic</button>
+    <button name="submit" class="btn btn-primary">Add topic</button>
 </form>
 {% endblock content %}

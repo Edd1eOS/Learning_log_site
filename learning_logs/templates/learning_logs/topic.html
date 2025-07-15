@@ -1,22 +1,28 @@
 {% extends "learning_logs/base.html" %}
 
+
+{% block page_header %}
+<h1>Topic: {{ topic.text }}</h1>
+{% endblock page_header %}
+
 {% block content %}
 <p> Topic: {{topic.text}}</p>
 
 <p>Entries:</p>
-<p><a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a></p>
+<button class="btn btn-success"><a href="{% url 'learning_logs:new_entry' topic.id %}" class="text-white text-decoration-none">Add new entry</a></button>
 
-<ul>
-    {% for entry in entries %}
-      <li>
-        <p>{{entry.date_added|date:'M d, Y H:i'}} </p>
-        <p>{{entry.text|linebreaks}}</p>
-        <p><a href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a></p>
-        
-      </li>
-    {% empty %}
-      <li>There are no entries for this topic yet.</li>
-    {% endfor %}
-</ul>
+{% for entry in entries %}
+<div class="card-header">
+  {{ entry.date_added|date:'M d, Y H:i' }}
+</div>
+<h4 class="list-group-item border-0 ">
+  <p>{{entry.text|linebreaks}}</p>
+  <button class="btn btn-primary btn-sm">
+    <a href="{% url 'learning_logs:edit_entry' entry.id %}" class="text-white text-decoration-none">Edit Entry</a>
+  </button>
+</h4>
+{% empty %}
+<p class="list-group-item border-0">There are no entries for this topic yet.</p>
+{% endfor %}
 
 {% endblock content %}

@@ -28,6 +28,9 @@
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'learning_logs:index' %}">Home</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'learning_logs:topics' %}">Topics</a>
+                        </li>
             </ul>
             <!--与账户相关的信息-->
             <ul class="navbar-nav" ms-auto m2-2-md-0>
@@ -43,12 +46,29 @@
                 {% endif %}
 
             </ul>
-"
+            {% if user.is_authenticated %}
+                <form action="{% url 'accounts:logout' %}" method="post" class="d-flex">
+                    {% csrf_token %}
+                    <button name='submit' class='btn btn-outline-secondary btn-sm'>Log out</button>
+                </form>
+            {% endif %}
+
+            
         </div>
     
     </div><!--定义导航栏的容器到此结束-->
 </nav><!--定义导航栏到此结束-->
 
-{% block content %}{% endblock content %}
-
-                
+<main class="container">
+  <div class="pb-2 mb-2" boarder-bottom>
+    {%block page_header%}{% endblock page_header %}
+  </div>
+  <div>
+    {%block content%}{% endblock content %}
+  </div>
+  <div class="pt-4 mt-4 text-center text-muted">
+    <p>&copy; 2025 Learning Log by Edd1eOS,practice only</p>
+  </div>
+</main>
+</body>
+</html>

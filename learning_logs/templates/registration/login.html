@@ -1,16 +1,17 @@
 {% extends "learning_logs/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+
+  <h2>Log in to your account.</h2>
+{% endblock page_header %}
 
 {% block content %}
 
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
-
   <form action="{% url 'accounts:login' %}" method='post'>
     {% csrf_token %}
-    {{form.as_div}} {# 把表单渲染成HTML，用div展示每个表单项，div是一个通用容器，可以包裹多个元素并独立控制样式；而p是段落标签，专门用来显示文字内容，不适宜用于布局 #}
-
-    <button name="submit">Log in</button>
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Log in" %}
   </form>
 
 {% endblock content %}

@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+<button class="btn btn-secondary"><a href="{% url 'learning_logs:topic' topic.id %}" class="text-white text-decoration-none">{{ topic }}</a></button>
 
 <p>Add a new entry</p>
 <form action = "{% url 'learning_logs:new_entry' topic.id %}" method = 'post'>
     {% csrf_token %}
     {{ form.as_div }}
-    <button name="submit">Add entry</button>
+    <button name="submit" class="btn btn-primary">Add entry</button>
 </form>
 {% endblock content %}

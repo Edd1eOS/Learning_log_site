@@ -1,21 +1,25 @@
 {% extends "learning_logs/base.html" %}
 
+{% block page_header %}
+  <h1>Topics</h1>
+{% endblock page_header %}
+<!--继承base.html中的page_header占位符-->
+
+{% load django_bootstrap5 %}  {#加载bootstrap5模板标签库#}
+{% load static %}  {#加载静态文件#}
 {% block content %}
 
-<p>Topics</p>
-
-<ul>
+  <div class="list-group border-bottom pb-2 mb-4">
     {% for topic in topics %}
-      <li>
-        <a href="{% url 'learning_logs:topic' topic.id %}">
-        {{topic.text}}</a>
-      
-    </li>
-      
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="{% url 'learning_logs:topic' topic.id %}" class="btn btn-secondary btn-sm">{{ topic.text }}</a>
+        <!-- 添加一个操作按钮 -->
+        <a href="{% url 'learning_logs:new_topic' %}" class="btn btn-primary btn-sm">Edit</a>
+      </div>
     {% empty %}
-      <li>No topics have been added yet.</li>
+      <div class="list-group-item">No topics available.</div>
     {% endfor %}
-</ul>  
+  </div>
 
-<a href="{% url 'learning_logs:new_topic' %}">Add a new topic</a>
+  <a href="{% url 'learning_logs:new_topic' %}" class="btn btn-primary mt-3">Add a new topic</a>
 {% endblock content %}
